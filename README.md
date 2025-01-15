@@ -1,111 +1,93 @@
-# Spring Boot Microservices
-This repository contains the latest source code of the spring-boot-microservices tutorial
+# 📦 Vistly Assessment Project
 
+This repository contains the code and instructions for the Vistly Assessment. Follow the steps below to set up and run the project.
 
-## Services Overview
+## 🔽 Step 1: Download the Code
 
-- Product Service
-- Order Service
-- Inventory Service
-- Notification Service
-- API Gateway using Spring Cloud Gateway MVC
-- Shop Frontend using Angular 18
+1. Download the `Vistly_Assessment_Code.zip` file.
+2. Extract the contents to your local machine.
+3. Navigate to the extracted project directory.
 
-## Tech Stack
+## 🖥️ Backend Setup (Spring Boot)
 
-The technologies used in this project are:
+### Prerequisites
 
-- Spring Boot
-- Angular
-- Mongo DB
-- MySQL
-- Kafka
-- Keycloak
-- Test Containers with Wiremock
-- Grafana Stack (Prometheus, Grafana, Loki and Tempo)
-- API Gateway using Spring Cloud Gateway MVC
-- Kubernetes
+Ensure the project includes the following dependencies:
+- **Spring Web**
+- **Spring Data JPA**
+- **MySQL Driver**
+- **Lombok** (optional, for concise code).
 
+### Configuration
 
-## Application Architecture
-![image](https://github.com/user-attachments/assets/d4ef38bd-8ae5-4cc7-9ac5-7a8e5ec3c969)
+1. **Environment Properties**
+   - Navigate to `src/main/resources`.
+   - Create two property files:
+     - `application-dev.properties` for the development environment.
+     - `application-prod.properties` for the production environment.
+   - Set the active profile in `application.properties`:
+     ```properties
+     spring.profiles.active=dev
+     ```
 
-## How to run the frontend application
+2. **Database Setup**
+   - Create a MySQL database.
+   - Update the database credentials (URL, username, password) in the appropriate properties file.
 
-Make sure you have the following installed on your machine:
+### Running the Backend
 
-- Node.js
-- NPM
-- Angular CLI
+1. Open the project in your IDE (e.g., IntelliJ IDEA, Eclipse, or VS Code).
+2. Start the backend using the following command:
+   ```bash
+   mvn spring-boot:run
 
-Run the following commands to start the frontend application
+   The backend will run at:
+http://localhost:8080
+🌐 Frontend Setup (React or Angular)
+Prerequisites
+Ensure Node.js is installed on your system.
 
-```shell
-cd frontend
+Setup
+Navigate to the frontend folder in the project directory.
+Install the required dependencies:
+bash
+Copy code
 npm install
-npm run start
-```
-## How to build the backend services
+Running the Frontend
+Start the frontend application:
+bash
+Copy code
+npm start
+The frontend will run at:
+React: http://localhost:3000
+Angular: http://localhost:4200
+API Integration
+Ensure the backend API URL is configured correctly in the frontend source files.
 
-Run the following command to build and package the backend services into a docker container
+🔧 Additional Features
+1. Authentication and Authorization
+Implement security mechanisms to protect backend APIs and secure frontend routes.
 
-```shell
-mvn spring-boot:build-image -DdockerPassword=<your-docker-account-password>
-```
+2. Error Handling
+Add robust error-handling mechanisms to gracefully manage errors and display user-friendly messages.
 
-The above command will build and package the services into a docker container and push it to your docker hub account.
+3. Testing
+Backend: Write unit and integration tests using JUnit.
+Frontend: Use Jest (for React) or Angular TestBed for testing.
+4. Deployment
+Backend: Deploy to a cloud platform such as AWS, GCP, or Azure.
+Frontend: Host on platforms like Netlify or Vercel.
+5. CI/CD
+Set up CI/CD pipelines to automate the build, test, and deployment processes using tools like GitHub Actions or Jenkins.
 
-## How to run the backend services
+📤 Submission
+Ensure the project is complete and all necessary files are included.
+Push the project to this GitHub repository.
+Zip the project folder and upload it as per the submission instructions.
+📧 Contact
+For any questions or further clarification, feel free to reach out. We look forward to reviewing your submission!
 
-Make sure you have the following installed on your machine:
+vbnet
+Copy code
 
-- Java 21
-- Docker
-- Kind Cluster - https://kind.sigs.k8s.io/docs/user/quick-start/#installation
-
-### Start Kind Cluster
-    
-Run the k8s/kind/create-kind-cluster.sh script to create the kind Kubernetes cluster
-
-```shell
-./k8s/kind/create-kind-cluster.sh
-```
-This will create a kind cluster and pre-load all the required docker images into the cluster, this will save you time downloading the images when you deploy the application.
-
-### Deploy the infrastructure
-
-Run the k8s/manisfests/infrastructure.yaml file to deploy the infrastructure
-
-```shell
-kubectl apply -f k8s/manifests/infrastructure.yaml
-```
-
-### Deploy the services
-
-Run the k8s/manifests/applications.yaml file to deploy the services
-
-```shell
-kubectl apply -f k8s/manifests/applications.yaml
-```
-
-### Access the API Gateway
-
-To access the API Gateway, you need to port-forward the gateway service to your local machine
-
-```shell
-kubectl port-forward svc/gateway-service 9000:9000
-```
-
-### Access the Keycloak Admin Console
-To access the Keycloak admin console, you need to port-forward the keycloak service to your local machine
-
-```shell
-kubectl port-forward svc/keycloak 8080:8080
-```
-
-### Access the Grafana Dashboards
-To access the Grafana dashboards, you need to port-forward the grafana service to your local machine
-
-```shell
-kubectl port-forward svc/grafana 3000:3000
-```
+This version uses Markdown best practices for GitHub and will render properly in the README pr
